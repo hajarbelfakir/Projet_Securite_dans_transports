@@ -1,3 +1,4 @@
+```mermaid
 classDiagram
     AgentDeSecurite -- Incident : intervient
     AgentDeSecurite -- CameraSurveillance : surveille
@@ -89,3 +90,4 @@ classDiagram
         +conduireTransport(): void
         +signalerProbleme(): void
     }
+```
