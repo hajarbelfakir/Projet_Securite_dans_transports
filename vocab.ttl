@@ -1,0 +1,138 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix o: <http://omeka.org/s/vocabs/o#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix ma: <http://www.w3.org/ns/ma-ont#> .
+@prefix sst: <https://jardindesconnaissances.univ-paris8.fr/onto/sst#> .
+
+<https://jardindesconnaissances.univ-paris8.fr/onto/sst#> a owl:Ontology ;
+    dcterms:title "Sécurité dans les Transports Publics en Seine-Saint-Denis" .
+
+sst:Transport a rdfs:Class ;
+    rdfs:label "Transport Public" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:AgentDeSecurite a rdfs:Class ;
+    rdfs:label "Agent de Sécurité" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:CameraSurveillance a rdfs:Class ;
+    rdfs:label "Caméra de Surveillance" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:ControleAcces a rdfs:Class ;
+    rdfs:label "Contrôle d'Accès" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:Incident a rdfs:Class ;
+    rdfs:label "Incident" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:SystemeAlerte a rdfs:Class ;
+    rdfs:label "Système d'Alerte" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:Passager a rdfs:Class ;
+    rdfs:label "Passager" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:Usager a rdfs:Class ;
+    rdfs:label "Usager" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:RapportIncident a rdfs:Class ;
+    rdfs:label "Rapport d'Incident" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:Police a rdfs:Class ;
+    rdfs:label "Police" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:Conducteur a rdfs:Class ;
+    rdfs:label "Conducteur" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:hasIncident a rdf:Property ;
+    rdfs:label "a comme incident" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+sst:intervientDans a rdf:Property ;
+    rdfs:label "intervient dans" ;
+    rdfs:domain sst:AgentDeSecurite ;
+    rdfs:range sst:Incident ;
+    vs:term_status "experimental" .
+
+sst:surveille a rdf:Property ;
+    rdfs:label "surveille" ;
+    rdfs:domain sst:AgentDeSecurite ;
+    rdfs:range sst:CameraSurveillance ;
+    vs:term_status "experimental" .
+
+sst:declenche a rdf:Property ;
+    rdfs:label "déclenche" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range sst:SystemeAlerte ;
+    vs:term_status "experimental" .
+
+sst:estSignaléPar a rdf:Property ;
+    rdfs:label "est signalé par" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range sst:Passager ;
+    vs:term_status "experimental" .
+
+sst:utilise a rdf:Property ;
+    rdfs:label "utilise" ;
+    rdfs:domain sst:Passager ;
+    rdfs:range sst:ControleAcces ;
+    vs:term_status "experimental" .
+
+sst:correspondA a rdf:Property ;
+    rdfs:label "correspond à" ;
+    rdfs:domain sst:Passager ;
+    rdfs:range sst:Usager ;
+    vs:term_status "experimental" .
+
+sst:genere a rdf:Property ;
+    rdfs:label "génère" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range sst:RapportIncident ;
+    vs:term_status "experimental" .
+
+sst:estEnvoyéÀ a rdf:Property ;
+    rdfs:label "est envoyé à" ;
+    rdfs:domain sst:RapportIncident ;
+    rdfs:range sst:Police ;
+    vs:term_status "experimental" .
+
+sst:estConduitPar a rdf:Property ;
+    rdfs:label "est conduit par" ;
+    rdfs:domain sst:Transport ;
+    rdfs:range sst:Conducteur ;
+    vs:term_status "experimental" .
+
+sst:transporte a rdf:Property ;
+    rdfs:label "transporte" ;
+    rdfs:domain sst:Transport ;
+    rdfs:range sst:Passager ;
+    vs:term_status "experimental" .
+
+sst:concerne a rdf:Property ;
+    rdfs:label "concerne" ;
+    rdfs:domain sst:Transport ;
+    rdfs:range sst:Incident ;
+    vs:term_status "experimental" .
