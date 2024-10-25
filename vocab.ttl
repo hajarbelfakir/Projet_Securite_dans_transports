@@ -4,135 +4,294 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix o: <http://omeka.org/s/vocabs/o#> .
-@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
-@prefix ma: <http://www.w3.org/ns/ma-ont#> .
 @prefix sst: <https://jardindesconnaissances.univ-paris8.fr/onto/sst#> .
 
 <https://jardindesconnaissances.univ-paris8.fr/onto/sst#> a owl:Ontology ;
     dcterms:title "Sécurité dans les Transports Publics en Seine-Saint-Denis" .
 
+### Classes et Propriétés ###
+
 sst:Transport a rdfs:Class ;
     rdfs:label "Transport Public" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
+    
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:Transport ;
+    rdfs:range xsd:int .
+
+sst:typeTransport a rdf:Property ;
+    rdfs:label "Type de Transport" ;
+    rdfs:domain sst:Transport ;
+    rdfs:range xsd:string .
+
+sst:ligne a rdf:Property ;
+    rdfs:label "Ligne" ;
+    rdfs:domain sst:Transport ;
+    rdfs:range xsd:string .
+
+sst:transporterPassagers a rdf:Property ;
+    rdfs:label "Transporte Passagers" ;
+    rdfs:domain sst:Transport ;
+    rdfs:range xsd:boolean .
 
 sst:AgentDeSecurite a rdfs:Class ;
     rdfs:label "Agent de Sécurité" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:AgentDeSecurite ;
+    rdfs:range xsd:int .
+
+sst:nom a rdf:Property ;
+    rdfs:label "Nom" ;
+    rdfs:domain sst:AgentDeSecurite ;
+    rdfs:range xsd:string .
+
+sst:prenom a rdf:Property ;
+    rdfs:label "Prénom" ;
+    rdfs:domain sst:AgentDeSecurite ;
+    rdfs:range xsd:string .
+
+sst:patrouiller a rdf:Property ;
+    rdfs:label "Patrouiller" ;
+    rdfs:domain sst:AgentDeSecurite ;
+    rdfs:range xsd:boolean .
+
+sst:intervenirIncident a rdf:Property ;
+    rdfs:label "Intervenir sur un Incident" ;
+    rdfs:domain sst:AgentDeSecurite ;
+    rdfs:range xsd:boolean .
+
 sst:CameraSurveillance a rdfs:Class ;
     rdfs:label "Caméra de Surveillance" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
+
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:CameraSurveillance ;
+    rdfs:range xsd:int .
+
+sst:emplacement a rdf:Property ;
+    rdfs:label "Emplacement" ;
+    rdfs:domain sst:CameraSurveillance ;
+    rdfs:range xsd:string .
+
+sst:activerSurveillance a rdf:Property ;
+    rdfs:label "Activer Surveillance" ;
+    rdfs:domain sst:CameraSurveillance ;
+    rdfs:range xsd:boolean .
+
+sst:detecterMouvement a rdf:Property ;
+    rdfs:label "Détecter Mouvement" ;
+    rdfs:domain sst:CameraSurveillance ;
+    rdfs:range xsd:boolean .
 
 sst:ControleAcces a rdfs:Class ;
     rdfs:label "Contrôle d'Accès" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:ControleAcces ;
+    rdfs:range xsd:int .
+
+sst:type a rdf:Property ;
+    rdfs:label "Type de Contrôle" ;
+    rdfs:domain sst:ControleAcces ;
+    rdfs:range xsd:string .
+
+sst:autoriserEntree a rdf:Property ;
+    rdfs:label "Autoriser Entrée" ;
+    rdfs:domain sst:ControleAcces ;
+    rdfs:range xsd:boolean .
+
+sst:verifierBillet a rdf:Property ;
+    rdfs:label "Vérifier Billet" ;
+    rdfs:domain sst:ControleAcces ;
+    rdfs:range xsd:boolean .
+
 sst:Incident a rdfs:Class ;
     rdfs:label "Incident" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
+
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range xsd:int .
+
+sst:type a rdf:Property ;
+    rdfs:label "Type d'Incident" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range xsd:string .
+
+sst:description a rdf:Property ;
+    rdfs:label "Description" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range xsd:string .
+
+sst:dateHeure a rdf:Property ;
+    rdfs:label "Date et Heure" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range xsd:dateTime .
+
+sst:declarerIncident a rdf:Property ;
+    rdfs:label "Déclarer Incident" ;
+    rdfs:domain sst:Incident ;
+    rdfs:range xsd:boolean .
 
 sst:SystemeAlerte a rdfs:Class ;
     rdfs:label "Système d'Alerte" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:SystemeAlerte ;
+    rdfs:range xsd:int .
+
+sst:typeAlerte a rdf:Property ;
+    rdfs:label "Type d'Alerte" ;
+    rdfs:domain sst:SystemeAlerte ;
+    rdfs:range xsd:string .
+
+sst:envoyerAlerte a rdf:Property ;
+    rdfs:label "Envoyer Alerte" ;
+    rdfs:domain sst:SystemeAlerte ;
+    rdfs:range xsd:boolean .
+
+sst:recevoirRapportIncident a rdf:Property ;
+    rdfs:label "Recevoir Rapport d'Incident" ;
+    rdfs:domain sst:SystemeAlerte ;
+    rdfs:range xsd:boolean .
+
 sst:Passager a rdfs:Class ;
     rdfs:label "Passager" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
+
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:Passager ;
+    rdfs:range xsd:int .
+
+sst:nom a rdf:Property ;
+    rdfs:label "Nom" ;
+    rdfs:domain sst:Passager ;
+    rdfs:range xsd:string .
+
+sst:prenom a rdf:Property ;
+    rdfs:label "Prénom" ;
+    rdfs:domain sst:Passager ;
+    rdfs:range xsd:string .
+
+sst:signalerIncident a rdf:Property ;
+    rdfs:label "Signaler Incident" ;
+    rdfs:domain sst:Passager ;
+    rdfs:range xsd:boolean .
 
 sst:Usager a rdfs:Class ;
     rdfs:label "Usager" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:Usager ;
+    rdfs:range xsd:int .
+
+sst:typeUsager a rdf:Property ;
+    rdfs:label "Type d'Usager" ;
+    rdfs:domain sst:Usager ;
+    rdfs:range xsd:string .
+
+sst:frequence a rdf:Property ;
+    rdfs:label "Fréquence" ;
+    rdfs:domain sst:Usager ;
+    rdfs:range xsd:string .
+
 sst:RapportIncident a rdfs:Class ;
     rdfs:label "Rapport d'Incident" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
+
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:RapportIncident ;
+    rdfs:range xsd:int .
+
+sst:details a rdf:Property ;
+    rdfs:label "Détails" ;
+    rdfs:domain sst:RapportIncident ;
+    rdfs:range xsd:string .
+
+sst:dateRapport a rdf:Property ;
+    rdfs:label "Date du Rapport" ;
+    rdfs:domain sst:RapportIncident ;
+    rdfs:range xsd:dateTime .
+
+sst:envoyerRapport a rdf:Property ;
+    rdfs:label "Envoyer Rapport" ;
+    rdfs:domain sst:RapportIncident ;
+    rdfs:range xsd:boolean .
 
 sst:Police a rdfs:Class ;
     rdfs:label "Police" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:Police ;
+    rdfs:range xsd:int .
+
+sst:poste a rdf:Property ;
+    rdfs:label "Poste" ;
+    rdfs:domain sst:Police ;
+    rdfs:range xsd:string .
+
+sst:intervenirSurIncident a rdf:Property ;
+    rdfs:label "Intervenir sur Incident" ;
+    rdfs:domain sst:Police ;
+    rdfs:range xsd:boolean .
+
+sst:recevoirRapportIncident a rdf:Property ;
+    rdfs:label "Recevoir Rapport d'Incident" ;
+    rdfs:domain sst:Police ;
+    rdfs:range xsd:boolean .
+
 sst:Conducteur a rdfs:Class ;
     rdfs:label "Conducteur" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
 
-sst:hasIncident a rdf:Property ;
-    rdfs:label "a comme incident" ;
-    rdfs:domain o:Resource ;
-    vs:term_status "experimental" .
+sst:id a rdf:Property ;
+    rdfs:label "ID" ;
+    rdfs:domain sst:Conducteur ;
+    rdfs:range xsd:int .
 
-sst:intervientDans a rdf:Property ;
-    rdfs:label "intervient dans" ;
-    rdfs:domain sst:AgentDeSecurite ;
-    rdfs:range sst:Incident ;
-    vs:term_status "experimental" .
+sst:nom a rdf:Property ;
+    rdfs:label "Nom" ;
+    rdfs:domain sst:Conducteur ;
+    rdfs:range xsd:string .
 
-sst:surveille a rdf:Property ;
-    rdfs:label "surveille" ;
-    rdfs:domain sst:AgentDeSecurite ;
-    rdfs:range sst:CameraSurveillance ;
-    vs:term_status "experimental" .
+sst:prenom a rdf:Property ;
+    rdfs:label "Prénom" ;
+    rdfs:domain sst:Conducteur ;
+    rdfs:range xsd:string .
 
-sst:declenche a rdf:Property ;
-    rdfs:label "déclenche" ;
-    rdfs:domain sst:Incident ;
-    rdfs:range sst:SystemeAlerte ;
-    vs:term_status "experimental" .
+sst:conduireTransport a rdf:Property ;
+    rdfs:label "Conduire Transport" ;
+    rdfs:domain sst:Conducteur ;
+    rdfs:range xsd:boolean .
 
-sst:estSignaléPar a rdf:Property ;
-    rdfs:label "est signalé par" ;
-    rdfs:domain sst:Incident ;
-    rdfs:range sst:Passager ;
-    vs:term_status "experimental" .
-
-sst:utilise a rdf:Property ;
-    rdfs:label "utilise" ;
-    rdfs:domain sst:Passager ;
-    rdfs:range sst:ControleAcces ;
-    vs:term_status "experimental" .
-
-sst:correspondA a rdf:Property ;
-    rdfs:label "correspond à" ;
-    rdfs:domain sst:Passager ;
-    rdfs:range sst:Usager ;
-    vs:term_status "experimental" .
-
-sst:genere a rdf:Property ;
-    rdfs:label "génère" ;
-    rdfs:domain sst:Incident ;
-    rdfs:range sst:RapportIncident ;
-    vs:term_status "experimental" .
-
-sst:estEnvoyéÀ a rdf:Property ;
-    rdfs:label "est envoyé à" ;
-    rdfs:domain sst:RapportIncident ;
-    rdfs:range sst:Police ;
-    vs:term_status "experimental" .
-
-sst:estConduitPar a rdf:Property ;
-    rdfs:label "est conduit par" ;
-    rdfs:domain sst:Transport ;
-    rdfs:range sst:Conducteur ;
-    vs:term_status "experimental" .
-
-sst:transporte a rdf:Property ;
-    rdfs:label "transporte" ;
-    rdfs:domain sst:Transport ;
-    rdfs:range sst:Passager ;
-    vs:term_status "experimental" .
-
-sst:concerne a rdf:Property ;
-    rdfs:label "concerne" ;
-    rdfs:domain sst:Transport ;
-    rdfs:range sst:Incident ;
-    vs:term_status "experimental" .
+sst:signalerProbleme a rdf:Property ;
+    rdfs:label "Signaler Problème" ;
+    rdfs:domain sst:Conducteur ;
+    rdfs:range xsd:boolean .
