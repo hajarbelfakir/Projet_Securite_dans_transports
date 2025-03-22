@@ -3,13 +3,11 @@ classDiagram
     AgentDeSecurite -- Incident : intervient
     AgentDeSecurite -- CameraSurveillance : surveille
     Incident -- SystemeAlerte : déclenche
-    Incident -- Passager : est signalé par
-    Passager -- ControleAcces : utilise
-    Passager -- Usager : correspond à
+    Incident -- Usager : est signalé par
     Incident -- RapportIncident : génère
-    RapportIncident -- Police : est envoyé à
+    RapportIncident -- ResponsableRATP : est envoyé à
     Transport -- Conducteur : est conduit par
-    Transport -- Passager : transporte
+    Transport -- Usager : transporte
     Transport -- Incident : concerne
 
     class AgentDeSecurite {
@@ -27,13 +25,6 @@ classDiagram
         +detecterMouvement(): void
     }
 
-    class ControleAcces {
-        +int id
-        +String type
-        +autoriserEntree(): bool
-        +verifierBillet(): bool
-    }
-
     class Incident {
         +int id
         +String type
@@ -49,17 +40,11 @@ classDiagram
         +recevoirRapportIncident(): void
     }
 
-    class Passager {
-        +int id
-        +String nom
-        +String prenom
-        +signalerIncident(): void
-    }
-
     class Usager {
         +int id
         +String typeUsager
         +String fréquence
+        +signalerIncident(): void
     }
 
     class RapportIncident {
@@ -69,11 +54,12 @@ classDiagram
         +envoyerRapport(): void
     }
 
-    class Police {
+    class ResponsableRATP {
         +int id
+        +String nom
         +String poste
-        +intervenirSurIncident(): void
-        +recevoirRapportIncident(): void
+        +analyserRapportIncident(): void
+        +prendreDecision(): void
     }
 
     class Transport {
