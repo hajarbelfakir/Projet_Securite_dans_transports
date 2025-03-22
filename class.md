@@ -1,16 +1,20 @@
 ```mermaid
 classDiagram
-    AgentDeSecurite -- Incident : intervient
-    AgentDeSecurite -- CameraSurveillance : surveille
+    AgentDeSurete -- Incident : intervient
+    AgentDeSurete -- CameraSurveillance : surveille partiellement
     Incident -- SystemeAlerte : déclenche
     Incident -- Usager : est signalé par
     Incident -- RapportIncident : génère
-    RapportIncident -- ResponsableRATP : est envoyé à
+    RapportIncident -- OperateurPCC : est envoyé à
+    RapportIncident -- Police : peut être transmis à
     Transport -- Conducteur : est conduit par
     Transport -- Usager : transporte
     Transport -- Incident : concerne
+    OperateurPCC -- CameraSurveillance : surveille
+    OperateurPCC -- AgentDeSurete : alerte
+    Usager -- SystemeAlerte : peut contacter via borne/app
 
-    class AgentDeSecurite {
+    class AgentDeSurete {
         +int id
         +String nom
         +String prenom
@@ -54,12 +58,18 @@ classDiagram
         +envoyerRapport(): void
     }
 
-    class ResponsableRATP {
+    class OperateurPCC {
         +int id
-        +String nom
         +String poste
-        +analyserRapportIncident(): void
-        +prendreDecision(): void
+        +surveillerCamera(): void
+        +alerterAgents(): void
+    }
+
+    class Police {
+        +int id
+        +String poste
+        +intervenirSurIncident(): void
+        +recevoirRapportIncident(): void
     }
 
     class Transport {
