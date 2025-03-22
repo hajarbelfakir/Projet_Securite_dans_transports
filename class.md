@@ -1,7 +1,7 @@
 ```mermaid
 classDiagram
-    AgentDeSurete -- Incident : intervient
-    AgentDeSurete -- CameraSurveillance : surveille partiellement
+    AgentDeSécurité -- Incident : intervient
+    AgentDeSécurité -- CameraSurveillance : surveille partiellement
     Incident -- SystemeAlerte : déclenche
     Incident -- Usager : est signalé par
     Incident -- RapportIncident : génère
@@ -11,10 +11,10 @@ classDiagram
     Transport -- Usager : transporte
     Transport -- Incident : concerne
     OperateurPCC -- CameraSurveillance : surveille
-    OperateurPCC -- AgentDeSurete : alerte
+    OperateurPCC -- AgentDeSécurité  : alerte
     Usager -- SystemeAlerte : peut contacter via borne/app
 
-    class AgentDeSurete {
+    class AgentDeSécurité  {
         +int id
         +String nom
         +String prenom
